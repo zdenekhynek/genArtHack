@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0;
+				background-color: #fff;
+			}
+
+
+			/**
+			*	SCREEN 1
+			**/
+			.screen1 {
+
+			}
+			polyline {
+				transform: translate( -50%, -50%);
+			}
+
+
+			polyline.anim {
+			/*.path {*/
+				stroke: #333;
+				fill: transparent;
+				stroke-width: 0;
+				stroke-dashoffset: 1000;
+				stroke-dasharray: 25;
+			}
+			.anim-1 .polyline.anim {
+				stroke-dasharray: 100;
+			}
+			
+			.anim-0 polyline.anim {
+				animation: dash-0 20s linear infinite alternate;
+			}
+			.anim-1 polyline.anim {
+				animation: dash-1 20s linear infinite alternate;
+			}
+			.anim-2 polyline.anim {
+				animation: dash-2 20s linear infinite alternate;
+			}
+
+			@keyframes dash-0 {
+				5% {
+					stroke-width: 3;
+				}
+				100% {
+					stroke-dashoffset: 200;
+					stroke-width: 3;
+				}
+			}
+			@keyframes dash-1 {
+				10% {
+					stroke-width: 2;
+					stroke-dasharray: 5;
+				}
+				100% {
+					stroke-dashoffset: -1000;
+					stroke-dasharray: .1;
+					stroke-width: 2;
+				}
+			}
+			@keyframes dash-2 {
+				5% {
+					stroke-width: 3;
+					stroke-dasharray: 25;
+				}
+				100% {
+					stroke-dashoffset: -1000;
+					stroke-width: 3;
+					stroke-dasharray: 15;
+				}
+			}
+		
+		</style>
+	</head>
+	<body>
+		<svg width="100%" height="100%">
+	
+    	</svg>
+		
+		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script src="libs/snap.svg.js"></script>
+		
+		<script>
+
+			(function() {
+
+				"use strict";
+
+				function loop() {
+					requestAnimationFrame( loop );
+				}
+				requestAnimationFrame( loop );
+
+				function createPolygons( id, offset ) {
+
+					var s = Snap("svg"),
+						g = s.group(),
+						$window = $( window ),
+						w = $window.width(),
+						h = $window.height();
+					
+					var	growth = id * 20,
+						triangleWidth = 100 + growth,
+						startX = w/2,// - growth/4,
+						startY = h/2 + growth/1.6;
+					
+					var polyline = s.polyline( startX, startY, startX + triangleWidth, startY, startX + triangleWidth/2, startY - triangleWidth/1.3, startX, startY );
+					polyline.attr( {
+						class: "anim"
+					});
+
+					var gClassName = "anim-" + id;
+					console.log( gClassName );
+					g.attr( { class: gClassName } );
+					g.add( polyline );
+
+				}
+
+				var index = 0;
+				createPolygons( index );
+				var screen1Interval = setInterval( function() {
+
+					index++;
+					createPolygons( index, Math.random() );
+					
+					if( index > 1 ) {
+						clearInterval( screen1Interval );
+					}
+
+				}, 1500 );
+
+			}());
+			
+		</script>
+	</body>
+</html>
