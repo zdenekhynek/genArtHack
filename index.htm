@@ -6,6 +6,7 @@
 				background-color: #fff;
 			}
 			rect {
+				-webkit-transform: translate( -50%, -50%);
 				transform: translate( -50%, -50%);
 			}
 			circle.anim, rect.anim, rect.anim2, circle.anim2, rect.anim3, circle.anim3 {
@@ -14,9 +15,11 @@
 				fill: transparent;
 				stroke-width: 1;
 				stroke-dasharray: 100;
+				-webkit-animation: dash 10s linear .3s infinite alternate;
 				animation: dash 10s linear .3s infinite alternate;
 			}
 				rect.anim2, circle.anim2 {
+					-webkit-animation: dash-2 10s linear .3s infinite alternate;
 					animation: dash-2 10s linear .3s infinite alternate;
 				}
 			
@@ -34,6 +37,20 @@
 					opacity: 0.5;
 				}
 			}
+				@-webkit-keyframes dash {
+					10% {
+						stroke-dashoffset: 50;
+						stroke-dasharray: 2;
+						stroke-width: 120;
+						opacity: 1;
+					}
+					100% {
+						stroke-dashoffset: 1;
+						stroke-dasharray: 2;
+						stroke-width: 160;
+						opacity: 0.5;
+					}
+				}
 			@keyframes dash-2 {
 				10% {
 					stroke-dashoffset: 50;
@@ -48,10 +65,27 @@
 					opacity: 0.2;
 				}
 			}
+				@-webkit-keyframes dash-2 {
+					10% {
+						stroke-dashoffset: 50;
+						stroke-dasharray: 1;
+						stroke-width: 120;
+						opacity: .4;
+					}
+					100% {
+						stroke-dashoffset: 1;
+						stroke-dasharray: 4;
+						stroke-width: 320;
+						opacity: 0.2;
+					}
+				}
 			
 			.mask {
+				-webkit-animation: mask 10s linear infinite alternate;
 				animation: mask 10s linear infinite alternate;
+				-webkit-transform: scale(0);
 				transform: scale(0);
+				-webkit-transform-origin: 50% 50%;
 				transform-origin: 50% 50%;
 				opacity: 1;
 			}
@@ -59,6 +93,7 @@
 				10% {
 					opacity: 1;
 					transform: scale(1);
+					-webkit-transform: scale(1);
 				}
 				12% {
 					opacity: 1;
@@ -70,14 +105,33 @@
 					opacity: 0;
 				}
 			}
+				@-webkit-keyframes mask {
+					10% {
+						opacity: 1;
+						transform: scale(1);
+						-webkit-transform: scale(1);
+					}
+					12% {
+						opacity: 1;
+					}
+					15% {
+						opacity: 0;
+					}
+					100% {
+						opacity: 0;
+					}
+				}
 			
 			.mask-dash {
 				fill: transparent;
 				stroke: white;
 				stroke-dasharray: 100;
 				stroke-dashoffset: 0;
+				-webkit-animation: mask-dash 10s .2s linear infinite alternate;
 				animation: mask-dash 10s .2s linear infinite alternate;
+				-webkit-transform: scale(0);
 				transform: scale(0);
+				-webkit-transform-origin: 50% 50%;
 				transform-origin: 50% 50%;
 				opacity: 0.5;
 			}
@@ -88,6 +142,7 @@
 					stroke-width: 10;
 					opacity: 1;
 					transform: scale(1);
+					-webkit-transform: scale(1);
 				}
 				15% {
 					opacity: 0;
@@ -99,6 +154,25 @@
 					opacity: 0;
 				}
 			}
+				@-webkit-keyframes mask-dash {
+					10% {
+						stroke-dashoffset: 200;
+						stroke-dasharray: 10;
+						stroke-width: 10;
+						opacity: 1;
+						transform: scale(1);
+						-webkit-transform: scale(1);
+					}
+					15% {
+						opacity: 0;
+					}
+					100% {
+						stroke-dashoffset: 1;
+						stroke-dasharray: 1;
+						stroke-width: 12;
+						opacity: 0;
+					}
+				}
 			.twitter-link {
 				position: absolute;
 				bottom: 10px;
