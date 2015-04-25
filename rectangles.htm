@@ -89,23 +89,7 @@
 	<body>
 		<svg width="100%" height="100%">
 
-			<!--<circle cx="50%" cy="50%" r="75" />
-    		<circle cx="50%" cy="50%" r="100" />
-    		<circle cx="50%" cy="50%" r="50" />
-
-
-			<rect class="anim" rx="50" ry="50" x="50%" y="50%" width="23" height="23"/>
-			<rect rx="50" ry="50" x="50%" y="50%" width="15" height="15"/>
-			<rect rx="50" ry="50" x="50%" y="50%" width="53" height="53"/>
-			<rect rx="50" ry="50" x="50%" y="50%" width="45" height="45"/>
-    		<rect rx="50" ry="50" x="50%" y="50%" width="25" height="25"/>
-    		<rect rx="50" ry="50" x="50%" y="50%" width="20" height="20"/>
-    		<rect class="anim" rx="50" ry="50" x="50%" y="50%" width="40" height="40"/>
-    		<rect class="anim" x="50%" y="50%" width="200" height="200"/>
-
-    		<circle class="mask" cx="50%" cy="50%" r="55" />
-    		<circle class="mask-dash" cx="50%" cy="50%" r="20" />-->
-    	</svg>
+		</svg>
 		
 		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script src="libs/snap.svg.js"></script>
@@ -117,16 +101,17 @@
 			}
 			requestAnimationFrame( loop );
 
-			function createCircles() {
+			function createRects() {
 
 				var s = Snap("svg"),
-					len = 2;
+					len = 3;
 
 				for( var i = 0; i < len; i++ ) {
 
-					var r = 5 + i*2.4;
-					var circle = s.circle( "50%", "50%", r );
-					circle.attr( {
+					var r = 5 + i*150,
+						r2 = r/2;
+					var rect = s.rect("50%", "50%", r, r2, 0);
+					rect.attr( {
 						class: "anim"
 					});
 
@@ -137,7 +122,7 @@
 
 			}
 
-			createCircles();
+			createRects();
 			
 		</script>
 	</body>
