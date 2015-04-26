@@ -4,6 +4,7 @@
 			body {
 				margin: 0;
 				background-color: #fff;
+				font-family: Helvetica,Arial, sans-serif;
 			}
 
 			svg {
@@ -16,9 +17,11 @@
 				fill: transparent;
 				stroke-width: 1;
 				stroke-dasharray: 100;
+				-webkit-animation: dash 10s linear infinite alternate;
 				animation: dash 10s linear infinite alternate;
 			}
 			rect {
+				-webkit-transform: translate( -50%, -50%);
 				transform: translate( -50%, -50%);
 			}
 			.mask {
@@ -39,6 +42,20 @@
 					opacity: 0.5;
 				}
 			}
+				@-webkit-keyframes dash {
+					10% {
+						stroke-dashoffset: 50;
+						stroke-dasharray: 2;
+						stroke-width: 120;
+						opacity: 1;
+					}
+					100% {
+						stroke-dashoffset: 1;
+						stroke-dasharray: 1;
+						stroke-width: 160;
+						opacity: 0.5;
+					}
+				}
 			@keyframes svgRotation {
 				from {
 					transform: rotate(0deg);
@@ -49,6 +66,7 @@
 			}
 
 			.mask {
+				-webkit-animation: mask 10s linear infinite alternate;
 				animation: mask 10s linear infinite alternate;
 			}
 			@keyframes mask {
@@ -59,11 +77,20 @@
 					opacity: 0;
 				}
 			}
+				@-webkit-keyframes mask {
+					10% {
+						opacity: 1;
+					}
+					20% {
+						opacity: 0;
+					}
+				}
 			.mask-dash {
 				fill: transparent;
 				stroke: white;
 				stroke-dasharray: 100;
 				stroke-dashoffset: 0;
+				-webkit-animation: mask-dash 10s linear infinite alternate;
 				animation: mask-dash 10s linear infinite alternate;
 			}
 			@keyframes mask-dash {
@@ -83,6 +110,54 @@
 					opacity: 0;
 				}
 			}
+				@-webkit-keyframes mask-dash {
+					10% {
+						stroke-dashoffset: 200;
+						stroke-dasharray: 10;
+						stroke-width: 10;
+						opacity: 1;
+					}
+					20% {
+						opacity: 0;
+					}
+					100% {
+						stroke-dashoffset: 1;
+						stroke-dasharray: 2;
+						stroke-width: 12;
+						opacity: 0;
+					}
+				}
+			.screen-links {
+				position: absolute;
+				top: 0px;
+				left: 10px;
+				margin-left: 0px;
+				padding-left: 0px;
+				list-style-type: none;
+				clear: both;
+			}
+				.screen-links li {
+					float: left;
+					padding-right: 10px;
+					margin-left: 10px;
+					border-right: 1px solid black;
+				}
+					.screen-links li:last-child {
+						border-right: 0px;
+					}
+				.screen-links a {
+					color: black;
+					text-decoration: none;
+					font-size: 12px;
+				}
+					.screen-links a.active, .screen-links a:hover {
+						text-decoration: underline;
+					}
+			.twitter-link {
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+			}
 		</style>
 	</head>
 	<body>
@@ -98,7 +173,15 @@
     		<rect class="anim" rx="50" ry="50" x="50%" y="50%" width="75" height="75"/>
     		<rect class="anim" x="50%" y="50%" width="200" height="200"/>
 		</svg>
-		
+		<ul class="screen-links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="screen1.htm">Screen 1</a></li>
+			<li><a href="screen2.htm">Screen 2</a></li>
+			<li><a href="screen3.htm">Screen 3</a></li>
+			<li><a href="screen4.htm" class="active">Screen 4</a></li>
+			<li><a href="screen5.htm">Screen 5</a></li>
+		</ul>
+    	<a class="twitter-link" href="https://twitter.com/@zdenekhynek" target="_blank"><img src="twitter-24-black.png" /></a>
 		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script>
 
